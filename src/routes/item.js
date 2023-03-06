@@ -3,9 +3,9 @@ const { body } = require("express-validator");
 const router = express.Router();
 
 const itemController = require("../controllers/item");
-//POST: /v1/item/post
+//POST: /v1/iventaris/item
 router.post(
-  "/post",
+  "/item",
   [
     body("nama_item")
       .isLength({ min: 1 })
@@ -15,10 +15,32 @@ router.post(
       .isLength({ min: 1 })
       .withMessage("input total stok tidak sesuai"),
   ],
-  itemController.createItemPost
+  itemController.createItem
 );
 
 //GET: /v1/item/posts
-router.get("/posts", itemController.getAllItem);
+router.get("/items", itemController.getAllItem);
+
+//[GET]: /v1/blog/post/:postId
+router.get("/item/:itemId", itemController.getItemById);
+
+// //[PUT]
+// router.put(
+//   "/post/:postId",
+//   [
+//     body("nama_item")
+//       .isLength({ min: 1 })
+//       .withMessage("input nama item tidak sesuai"),
+//     body("total_stok")
+//       .isNumeric()
+//       .isLength({ min: 1 })
+//       .withMessage("input total stok tidak sesuai"),
+//   ],
+//   itemController.updateItem
+// );
+
+// //[DELETE]
+// router.delete("/post/:postId", itemController.deleteItem);
+
 
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const itemRoutes = require("./src/routes/item");
+const cors = require('cors')
 //PORT SERVER
 const port = process.env.PORT || 4000;
 //DATABASE
@@ -12,8 +13,13 @@ const database =
 const app = express();
 app.use(bodyParser.json());
 
+app.use(cors({
+  origin: '*'
+}));
+
+
 //GET
-app.use("/v1/item", itemRoutes);
+app.use("/v1/iventaris", itemRoutes);
 
 mongoose
   .connect(database, {
