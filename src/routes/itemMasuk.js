@@ -2,44 +2,44 @@ const express = require("express");
 const { body } = require("express-validator");
 const router = express.Router();
 
-const itemController = require("../controllers/item");
-//POST: /v1/iventaris/item
+const itemMasukController = require("../controllers/itemMasuk");
+//POST: /v1/iventaris/item-masuk
 router.post(
-  "/item",
+  "/item-masuk",
   [
-    body("nama_item")
+    body("nama_item_masuk")
       .isLength({ min: 1 })
       .withMessage("input nama item tidak sesuai"),
-    body("total_stok")
+    body("jumlah_item_masuk")
       .isNumeric()
       .isLength({ min: 1 })
       .withMessage("input total stok tidak sesuai"),
   ],
-  itemController.createItem
+  itemMasukController.createItemMasuk
 );
 
-//GET: /v1/item/posts
-router.get("/items", itemController.getAllItem);
+//GET: /v1/iventaris/items-masuk
+router.get("/items-masuk", itemMasukController.getAllItemMasuk);
 
 //[GET]: /v1/blog/post/:postId
-router.get("/item/:itemId", itemController.getItemById);
+router.get("/item-masuk/:itemId", itemMasukController.getItemMasukById);
 
 //[PUT]
 router.put(
-  "/item/:itemId",
+  "/item-masuk/:itemId",
   [
-    body("nama_item")
+    body("nama_item_masuk")
       .isLength({ min: 1 })
       .withMessage("input nama item tidak sesuai"),
-    body("total_stok")
+    body("jumlah_item_masuk")
       .isNumeric()
       .isLength({ min: 1 })
       .withMessage("input total stok tidak sesuai"),
   ],
-  itemController.updateItem
+  itemMasukController.updateItemMasuk
 );
 
 //[DELETE]
-router.delete("/item/:itemId", itemController.deleteItem);
+router.delete("/item-masuk/:itemId", itemMasukController.deleteItemMasuk);
 
 module.exports = router;
