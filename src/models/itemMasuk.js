@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 mongoose.set("strictQuery", false);
 const ItemMasuk = new Schema(
   {
-    nama_item: {
+    nama_item_masuk: {
       type: String,
       required: true,
     },
